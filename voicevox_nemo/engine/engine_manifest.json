@@ -7,10 +7,14 @@
   "default_sampling_rate": 24000,
   "supported_features": {
     "sing": {
-      "value": false
+      "type": "bool",
+      "value": false,
+      "name": "歌唱音声合成"
     },
     "manage_library": {
-      "value": false
+      "type": "bool",
+      "value": false,
+      "name": "音声ライブラリのインストール・アンインストール"
     }
   }
 }

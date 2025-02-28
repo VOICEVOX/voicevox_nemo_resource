@@ -102,7 +102,7 @@ https://zunko.jp/con_ongen_kiyaku.html
 
 個人がもち子さんの音声ライブラリを用いて生成した音声は、
 「VOICEVOX:もち子(cv 明日葉よもぎ)」とクレジットを記載すれば、
-音声作品・音声素材・ゲーム作品等を除いて商用・非商用で利用可能です。  
+音声作品・音声素材・ゲーム作品等を除いて商用・非商用で利用可能です。
 ただし企業が携わる形で利用する場合は、「もちぞら模型店(https://vtubermochio.wixsite.com/mochizora/contact)」に対し事前確認を取る必要があります。
 
 利用規約の詳細は以下をご確認ください。
@@ -261,3 +261,29 @@ https://100hanamaru.wixsite.com/manbetsu-hanamaru/rule
 
 利用規約の詳細は以下をご確認ください。
 https://commons.nicovideo.jp/works/nc315435
+
+## Voidoll
+
+個人が Voidoll の音声ライブラリを用いて生成した音声は、
+「VOICEVOX:Voidoll(CV:丹下桜)」とクレジットを記載すれば、商用・非商用で利用可能です。
+ただし法人による利用の場合は、個別に問い合わせ(https://qa.nicovideo.jp/)が必要です。
+
+利用規約の詳細は以下をご確認ください。
+https://blog.nicovideo.jp/niconews/224589.html
+
+## ぞん子
+
+ぞん子の音声ライブラリを用いて生成した音声は、
+「VOICEVOX:ぞん子」とクレジットを記載すれば、商用・非商用で利用可能です。
+ただし商用利用の場合は、個別に問い合わせ(https://zonko.zone-energy.jp/contact)が必要です。
+
+利用規約の詳細は以下をご確認ください。
+https://zonko.zone-energy.jp/guideline
+
+## 中部つるぎ
+
+中部つるぎの音声ライブラリを用いて生成した音声は、
+「VOICEVOX:中部つるぎ」とクレジットを記載すれば、商用・非商用で利用可能です。
+
+利用規約の詳細は以下をご確認ください。
+https://zunko.jp/con_ongen_kiyaku.html
