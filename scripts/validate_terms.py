@@ -8,6 +8,7 @@ from typing import Literal
 
 
 def main():
+    print("=== VOICEVOX のテスト ===")
     terms = (
         Term(
             name="engine_text",
@@ -45,6 +46,45 @@ def main():
 
     print("内容の比較")
     compare_contents(base_term, target_terms)
+
+    print("\n=== VOICEVOX Nemo のテスト ===")
+    nemo_terms = (
+        Term(
+            name="nemo_engine_text",
+            title="VOICEVOX Nemo エンジン利用規約",
+            path=Path("voicevox_nemo/engine/README.md"),
+            type="text",
+        ),
+        NemoCoreTerm(
+            name="nemo_core_text",
+            title="VOICEVOX Nemo コアライブラリ利用規約",
+            path=Path("voicevox_nemo/core/README.md"),
+            type="text",
+        ),
+        Term(
+            name="nemo_vvm_markdown",
+            title="VOICEVOX Nemo 音声モデル 利用規約",
+            path=Path("voicevox_nemo/vvm/README.md"),
+            type="markdown",
+        ),
+        Term(
+            name="nemo_vvm_text",
+            title="VOICEVOX Nemo 音声モデル 利用規約",
+            path=Path("voicevox_nemo/vvm/README.txt"),
+            type="text",
+        ),
+    )
+    nemo_base_term = nemo_terms[0]
+    nemo_target_terms = nemo_terms[1:]
+
+    print("ファイルの存在確認")
+    check_file_exists(nemo_terms)
+
+    print("正規化の妥当性を確認")
+    check_normalized_content(nemo_terms)
+
+    print("内容の比較")
+    compare_contents(nemo_base_term, nemo_target_terms)
 
 
 @dataclass
@@ -103,6 +143,22 @@ class CoreTerm(Term):
         )
         if CORE_HEADER_TEXT in content:
             content = content.split(CORE_HEADER_TEXT, 1)[1]
+
+        return content
+
+
+class NemoCoreTerm(Term):
+    @property
+    def normalized_content(self) -> str:
+        content = super().normalized_content
+
+        NEMO_CORE_HEADER_TEXT = (
+            "これは VOICEVOX Nemo コアライブラリです。\n"
+            "https://github.com/VOICEVOX/voicevox_nemo_core\n\n"
+            "---\n\n"
+        )
+        if NEMO_CORE_HEADER_TEXT in content:
+            content = content.split(NEMO_CORE_HEADER_TEXT, 1)[1]
 
         return content
 
