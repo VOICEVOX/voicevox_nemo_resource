@@ -34,17 +34,35 @@ def main():
             type="text",
         ),
     )
-    base_term = terms[0]
-    target_terms = terms[1:]
+    validate_terms(terms)
 
-    print("ファイルの存在確認")
-    check_file_exists(terms)
-
-    print("正規化の妥当性を確認")
-    check_normalized_content(terms)
-
-    print("内容の比較")
-    compare_contents(base_term, target_terms)
+    nemo_terms = (
+        Term(
+            name="nemo_engine_text",
+            title="VOICEVOX Nemo エンジン利用規約",
+            path=Path("voicevox_nemo/engine/README.md"),
+            type="text",
+        ),
+        NemoCoreTerm(
+            name="nemo_core_text",
+            title="VOICEVOX Nemo コアライブラリ利用規約",
+            path=Path("voicevox_nemo/core/README.md"),
+            type="text",
+        ),
+        Term(
+            name="nemo_vvm_markdown",
+            title="VOICEVOX Nemo 音声モデル 利用規約",
+            path=Path("voicevox_nemo/vvm/README.md"),
+            type="markdown",
+        ),
+        Term(
+            name="nemo_vvm_text",
+            title="VOICEVOX Nemo 音声モデル 利用規約",
+            path=Path("voicevox_nemo/vvm/README.txt"),
+            type="text",
+        ),
+    )
+    validate_terms(nemo_terms)
 
 
 @dataclass
@@ -107,6 +125,37 @@ class CoreTerm(Term):
         return content
 
 
+class NemoCoreTerm(Term):
+    @property
+    def normalized_content(self) -> str:
+        content = super().normalized_content
+
+        NEMO_CORE_HEADER_TEXT = (
+            "これは VOICEVOX Nemo コアライブラリです。\n"
+            "https://github.com/VOICEVOX/voicevox_nemo_core\n\n"
+            "---\n\n"
+        )
+        if NEMO_CORE_HEADER_TEXT in content:
+            content = content.split(NEMO_CORE_HEADER_TEXT, 1)[1]
+
+        return content
+
+
+def validate_terms(terms: tuple[Term, ...]):
+    """利用規約の整合性をチェックする"""
+    base_term = terms[0]
+    target_terms = terms[1:]
+
+    print("ファイルの存在確認")
+    check_file_exists(terms)
+
+    print("正規化の妥当性を確認")
+    check_normalized_content(terms)
+
+    print("内容の比較")
+    compare_contents(base_term, target_terms)
+
+
 def check_file_exists(terms: tuple[Term, ...]):
     for term in terms:
         assert term.path.is_file(), f"{term} がファイルではありません"
@@ -118,10 +167,8 @@ def check_normalized_content(terms: tuple[Term, ...]):
     for term in terms:
         content = term.content
         normalized_content = term.normalized_content
-        rate = len(normalized_content) / len(content)
-        assert (
-            0.9 < rate < 1.1
-        ), f"{term} の正規化により文字数が大きく変わっています: {rate}"
+        diff = abs(len(content) - len(normalized_content))
+        assert diff < 125, f"{term} の正規化が不適切です（文字数差: {diff}）"
 
 
 def compare_contents(base_term: Term, target_terms: tuple[Term, ...]):

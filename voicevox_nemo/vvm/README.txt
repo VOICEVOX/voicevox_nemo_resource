@@ -1,4 +1,4 @@
-# VOICEVOX Nemo エンジン利用規約
+# VOICEVOX Nemo 音声モデル 利用規約
 
 ## 許諾内容
 

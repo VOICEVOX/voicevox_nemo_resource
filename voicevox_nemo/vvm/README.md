@@ -1,4 +1,4 @@
-# VOICEVOX Nemo エンジン利用規約
+# VOICEVOX Nemo 音声モデル 利用規約
 
 ## 許諾内容
 
@@ -27,8 +27,7 @@
 
 ## VOICEVOX Nemo
 
-VOICEVOX Nemo の音声ライブラリを用いて生成した音声は、
-「VOICEVOX Nemo」とクレジットを記載すれば、商用・非商用で利用可能です。
+VOICEVOX Nemo の音声ライブラリを用いて生成した音声は、「VOICEVOX Nemo」とクレジットを記載すれば、商用・非商用で利用可能です。
 
 利用規約の詳細は以下をご確認ください。
 https://voicevox.hiroshiba.jp/nemo/term/
