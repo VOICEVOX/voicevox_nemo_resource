@@ -174,10 +174,8 @@ def check_normalized_content(terms: tuple[Term, ...]):
     for term in terms:
         content = term.content
         normalized_content = term.normalized_content
-        rate = len(normalized_content) / len(content)
-        assert (
-            0.9 < rate < 1.1
-        ), f"{term} の正規化により文字数が大きく変わっています: {rate}"
+        diff = abs(len(content) - len(normalized_content))
+        assert diff < 125, f"{term} の正規化が不適切です（文字数差: {diff}）"
 
 
 def compare_contents(base_term: Term, target_terms: tuple[Term, ...]):
