@@ -8,7 +8,6 @@ from typing import Literal
 
 
 def main():
-    print("=== VOICEVOX のテスト ===")
     terms = (
         Term(
             name="engine_text",
@@ -35,19 +34,8 @@ def main():
             type="text",
         ),
     )
-    base_term = terms[0]
-    target_terms = terms[1:]
+    validate_terms(terms)
 
-    print("ファイルの存在確認")
-    check_file_exists(terms)
-
-    print("正規化の妥当性を確認")
-    check_normalized_content(terms)
-
-    print("内容の比較")
-    compare_contents(base_term, target_terms)
-
-    print("\n=== VOICEVOX Nemo のテスト ===")
     nemo_terms = (
         Term(
             name="nemo_engine_text",
@@ -74,17 +62,7 @@ def main():
             type="text",
         ),
     )
-    nemo_base_term = nemo_terms[0]
-    nemo_target_terms = nemo_terms[1:]
-
-    print("ファイルの存在確認")
-    check_file_exists(nemo_terms)
-
-    print("正規化の妥当性を確認")
-    check_normalized_content(nemo_terms)
-
-    print("内容の比較")
-    compare_contents(nemo_base_term, nemo_target_terms)
+    validate_terms(nemo_terms)
 
 
 @dataclass
@@ -161,6 +139,21 @@ class NemoCoreTerm(Term):
             content = content.split(NEMO_CORE_HEADER_TEXT, 1)[1]
 
         return content
+
+
+def validate_terms(terms: tuple[Term, ...]):
+    """利用規約の整合性をチェックする"""
+    base_term = terms[0]
+    target_terms = terms[1:]
+
+    print("ファイルの存在確認")
+    check_file_exists(terms)
+
+    print("正規化の妥当性を確認")
+    check_normalized_content(terms)
+
+    print("内容の比較")
+    compare_contents(base_term, target_terms)
 
 
 def check_file_exists(terms: tuple[Term, ...]):
